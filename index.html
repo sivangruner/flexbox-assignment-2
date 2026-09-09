@@ -16,68 +16,60 @@
         <section class="panel controls-panel">
             <div class="level-navigation">
                 <button type="button" id="btn-prev" class="nav-btn">Prev</button>
-                <span id="level-indicator" class="level-indicator">Level 1 of 6</span>
+                <span id="level-label" class="level-label">Level 1 of 6</span>
                 <button type="button" id="btn-next" class="nav-btn">Next</button>
             </div>
 
-            <p id="instruction-text" class="instruction-text"></p>
+            <p id="instruction" class="instruction"></p>
 
-            <form class="properties-form" id="flex-form" onsubmit="return false;">
+            <form class="properties-form" onsubmit="return false;">
                 <div class="property-group">
-                    <div class="property-row">
-                        <label for="sel-direction">flex-direction:</label>
-                        <select id="sel-direction">
-                            <option value="">-- select --</option>
-                            <option value="row">row</option>
-                            <option value="row-reverse">row-reverse</option>
-                            <option value="column">column</option>
-                            <option value="column-reverse">column-reverse</option>
-                        </select>
-                    </div>
+                    <label for="sel-direction">flex-direction:</label>
+                    <select id="sel-direction">
+                        <option value="">-- select --</option>
+                        <option value="row">row</option>
+                        <option value="row-reverse">row-reverse</option>
+                        <option value="column">column</option>
+                        <option value="column-reverse">column-reverse</option>
+                    </select>
                     <p class="property-hint">Sets the direction items are placed (row or column).</p>
                 </div>
 
                 <div class="property-group">
-                    <div class="property-row">
-                        <label for="sel-justify">justify-content:</label>
-                        <select id="sel-justify">
-                            <option value="">-- select --</option>
-                            <option value="flex-start">flex-start</option>
-                            <option value="flex-end">flex-end</option>
-                            <option value="center">center</option>
-                            <option value="space-between">space-between</option>
-                            <option value="space-around">space-around</option>
-                            <option value="space-evenly">space-evenly</option>
-                        </select>
-                    </div>
+                    <label for="sel-justify">justify-content:</label>
+                    <select id="sel-justify">
+                        <option value="">-- select --</option>
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="space-between">space-between</option>
+                        <option value="space-around">space-around</option>
+                        <option value="space-evenly">space-evenly</option>
+                    </select>
                     <p class="property-hint">Aligns items along the main axis.</p>
                 </div>
 
                 <div class="property-group">
-                    <div class="property-row">
-                        <label for="sel-align">align-items:</label>
-                        <select id="sel-align">
-                            <option value="">-- select --</option>
-                            <option value="flex-start">flex-start</option>
-                            <option value="flex-end">flex-end</option>
-                            <option value="center">center</option>
-                            <option value="stretch">stretch</option>
-                            <option value="baseline">baseline</option>
-                        </select>
-                    </div>
+                    <label for="sel-align">align-items:</label>
+                    <select id="sel-align">
+                        <option value="">-- select --</option>
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="stretch">stretch</option>
+                        <option value="baseline">baseline</option>
+                    </select>
                     <p class="property-hint">Aligns items along the cross axis.</p>
                 </div>
 
                 <div class="property-group">
-                    <div class="property-row">
-                        <label for="sel-wrap">flex-wrap:</label>
-                        <select id="sel-wrap">
-                            <option value="">-- select --</option>
-                            <option value="nowrap">nowrap</option>
-                            <option value="wrap">wrap</option>
-                            <option value="wrap-reverse">wrap-reverse</option>
-                        </select>
-                    </div>
+                    <label for="sel-wrap">flex-wrap:</label>
+                    <select id="sel-wrap">
+                        <option value="">-- select --</option>
+                        <option value="nowrap">nowrap</option>
+                        <option value="wrap">wrap</option>
+                        <option value="wrap-reverse">wrap-reverse</option>
+                    </select>
                     <p class="property-hint">Allows items to move to a new line when needed.</p>
                 </div>
             </form>
@@ -87,23 +79,22 @@
                 <button type="button" id="btn-reset" class="action-btn secondary-btn">Reset Level</button>
             </div>
 
-            <div id="message-box" class="feedback-box hidden"></div>
-
-            <p class="stats-footer">Attempts: <strong id="attempts-counter">0</strong></p>
+            <p id="message" class="message hidden"></p>
+            <p class="stats-footer">Attempts: <strong id="attempts">0</strong></p>
         </section>
 
         <section class="panel board-panel">
-            <div class="board-container">
-                <div id="game-board" class="game-board">
-                    <div id="target-container" class="flex-layer target-layer"></div>
-                    <div id="user-container" class="flex-layer user-layer"></div>
+            <div class="board-frame">
+                <div id="board" class="board">
+                    <div id="target-board" class="layer target"></div>
+                    <div id="user-board" class="layer user"></div>
                 </div>
             </div>
-            <p class="board-hint">The faded owners show where each dog should go. Match the colored borders, then click Validate.</p>
-            <ul class="pair-legend">
-                <li><span class="legend-swatch pair-dog1"></span> Orange = Golden dog</li>
-                <li><span class="legend-swatch pair-dog2"></span> Blue = Corgi</li>
-                <li><span class="legend-swatch pair-dog3"></span> Pink = Spotted dog</li>
+            <p class="hint">The faded owners show where each dog should go. Match the colored borders, then click Validate.</p>
+            <ul class="legend">
+                <li><span class="swatch pair-dog1"></span> Orange = Golden dog</li>
+                <li><span class="swatch pair-dog2"></span> Blue = Corgi</li>
+                <li><span class="swatch pair-dog3"></span> Pink = Spotted dog</li>
             </ul>
         </section>
     </main>
