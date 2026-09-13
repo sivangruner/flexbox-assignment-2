@@ -132,6 +132,11 @@ body {
     cursor: pointer;
 }
 
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .primary-btn {
     background: #00875f;
     color: white;
@@ -291,6 +296,7 @@ body {
 
     .board-panel {
         width: 100%;
+        align-items: flex-start;
         overflow-x: auto;
     }
 

@@ -53,6 +53,7 @@ var selects = {
 
 var currentLevel = 0;
 var attempts = 0;
+var advanceTimer = null;
 
 var userBoard = document.getElementById("user-board");
 var targetBoard = document.getElementById("target-board");
@@ -123,6 +124,7 @@ function showSuccessImage() {
     targetBoard.innerHTML = "";
     userBoard.innerHTML = "";
     userBoard.className = "layer user success-state";
+    applyLayout(userBoard, {});
 
     var img = document.createElement("img");
     img.src = "images/success.png";
@@ -139,6 +141,9 @@ function loadLevel() {
     var level = levels[currentLevel];
     var i;
 
+    clearTimeout(advanceTimer);
+    advanceTimer = null;
+    document.getElementById("btn-check").disabled = false;
     document.getElementById("level-label").textContent = "Level " + (currentLevel + 1) + " of " + levels.length;
     document.getElementById("instruction").textContent = level.text;
 
@@ -166,7 +171,10 @@ function loadLevel() {
 }
 
 function resetLevel() {
+    var keep = attempts;
     loadLevel();
+    attempts = keep;
+    attemptsEl.textContent = attempts;
 }
 
 function isMatch(dog, owner) {
@@ -194,17 +202,18 @@ function checkSolution() {
             }
         }
 
+        document.getElementById("btn-check").disabled = true;
         showSuccessImage();
         showMessage("Success! The dogs found their owners!", "success");
 
         if (currentLevel < levels.length - 1) {
-            setTimeout(function () {
+            advanceTimer = setTimeout(function () {
                 currentLevel++;
                 loadLevel();
             }, 1500);
         } else {
-            setTimeout(function () {
-                showMessage("You completed all 6 levels!", "success");
+            advanceTimer = setTimeout(function () {
+                showMessage("You completed all " + levels.length + " levels!", "success");
             }, 400);
         }
     });
