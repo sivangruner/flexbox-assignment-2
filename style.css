@@ -5,33 +5,33 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #18181b;
-    color: #e1e1e6;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    background: #eaf0dc;
+    color: #26331f;
     min-height: 100vh;
 }
 
 .site-header {
     text-align: center;
-    padding: 20px;
-    background: #202024;
-    border-bottom: 1px solid #323238;
+    padding: 18px;
+    background: #55703f;
+    border-bottom: 5px solid #3f5c2a;
 }
 
 .site-header h1 {
-    color: #00b37e;
-    font-size: 1.5rem;
+    color: #f6f3e3;
+    font-size: 1.6rem;
 }
 
 .site-header p {
-    color: #a8a8b3;
+    color: #d5e0bd;
     margin-top: 4px;
 }
 
 .game-layout {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
     gap: 20px;
     padding: 20px;
     max-width: 1100px;
@@ -39,15 +39,14 @@ body {
 }
 
 .panel {
-    background: #202024;
-    border: 1px solid #323238;
-    border-radius: 8px;
-    padding: 20px;
+    background: #fffdf6;
+    border: 2px solid #b9c79a;
+    border-radius: 5px;
+    padding: 18px;
 }
 
 .controls-panel {
     width: 100%;
-    max-width: 400px;
 }
 
 .level-navigation {
@@ -56,20 +55,21 @@ body {
     align-items: center;
     margin-bottom: 16px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #323238;
+    border-bottom: 2px dashed #c7d3ab;
 }
 
 .nav-btn {
-    background: transparent;
-    border: 1px solid #323238;
-    color: #e1e1e6;
-    padding: 6px 12px;
+    font-family: inherit;
+    background: #eef3e0;
+    border: 2px solid #9db07c;
+    color: #26331f;
+    padding: 5px 12px;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .nav-btn:hover:not(:disabled) {
-    background: #323238;
+    background: #dde7c6;
 }
 
 .nav-btn:disabled {
@@ -79,14 +79,13 @@ body {
 
 .level-label {
     font-weight: bold;
-    color: #00b37e;
+    color: #3f5c2a;
 }
 
 .instruction {
     margin-bottom: 16px;
     line-height: 1.5;
     min-height: 48px;
-    color: #c4c4cc;
 }
 
 .properties-form {
@@ -98,23 +97,25 @@ body {
 .property-group label {
     display: block;
     font-size: 0.85rem;
-    color: #a8a8b3;
+    font-weight: bold;
+    color: #46583a;
     margin-bottom: 4px;
 }
 
 .property-group select {
     width: 100%;
     padding: 6px;
-    background: #18181b;
-    color: #e1e1e6;
-    border: 1px solid #323238;
+    font-family: inherit;
+    background: #fffdf6;
+    color: #26331f;
+    border: 2px solid #9db07c;
     border-radius: 4px;
 }
 
 .property-hint {
     margin-top: 4px;
     font-size: 0.75rem;
-    color: #71717a;
+    color: #6b7a5f;
 }
 
 .action-row {
@@ -125,8 +126,9 @@ body {
 
 .action-btn {
     flex: 1;
+    font-family: inherit;
     padding: 10px;
-    border: none;
+    border: 2px solid #3f5c2a;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
@@ -138,13 +140,13 @@ body {
 }
 
 .primary-btn {
-    background: #00875f;
-    color: white;
+    background: #56763c;
+    color: #fffdf6;
 }
 
 .secondary-btn {
-    background: #323238;
-    color: #e1e1e6;
+    background: #e4e0cb;
+    color: #26331f;
 }
 
 .message {
@@ -156,15 +158,15 @@ body {
 }
 
 .message.success {
-    background: rgba(0, 179, 126, 0.15);
-    color: #00b37e;
-    border: 1px solid #00875f;
+    background: #d7e9c4;
+    color: #2f5417;
+    border: 2px solid #7ca055;
 }
 
 .message.error {
-    background: rgba(247, 90, 104, 0.15);
-    color: #f75a68;
-    border: 1px solid #f75a68;
+    background: #f3d6cd;
+    color: #8c3a22;
+    border: 2px solid #c07a63;
 }
 
 .hidden {
@@ -172,26 +174,30 @@ body {
 }
 
 .stats-footer {
-    margin-top: 16px;
-    padding-top: 12px;
-    border-top: 1px solid #323238;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid #d3ddb9;
     font-size: 0.8rem;
-    color: #a8a8b3;
+    color: #5c6b50;
 }
 
 .board-panel {
-    flex: 1;
-    min-width: 280px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+}
+
+/* the board never shrinks, so narrow screens scroll it sideways instead of clipping it */
+.board-scroll {
+    width: 100%;
+    overflow-x: auto;
 }
 
 .board-frame {
     width: 600px;
     height: 400px;
-    border: 1px solid #323238;
-    border-radius: 6px;
+    border: 6px solid #7a5c38;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -199,7 +205,7 @@ body {
     width: 600px;
     height: 400px;
     position: relative;
-    background: #09090a;
+    background: #95b086;
 }
 
 .layer {
@@ -222,16 +228,17 @@ body {
     height: 50px;
     object-fit: cover;
     border-radius: 6px;
-    border: 3px solid #00875f;
+    border: 3px solid #3f5c2a;
+    background: #fffdf6;
     flex-shrink: 0;
 }
 
-.pair-dog1 { border-color: #f59e0b; }
-.pair-dog2 { border-color: #3b82f6; }
-.pair-dog3 { border-color: #ec4899; }
+.pair-dog1 { border-color: #d98218; }
+.pair-dog2 { border-color: #2f6fb0; }
+.pair-dog3 { border-color: #c2467e; }
 
 .layer.target .token {
-    opacity: 0.65;
+    opacity: 0.55;
     border-style: dashed;
 }
 
@@ -242,19 +249,17 @@ body {
 .hint {
     margin-top: 10px;
     font-size: 0.85rem;
-    color: #a8a8b3;
-    text-align: center;
+    color: #55633f;
 }
 
 .legend {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 12px;
     margin-top: 8px;
     font-size: 0.75rem;
-    color: #a8a8b3;
+    color: #55633f;
 }
 
 .legend li {
@@ -269,9 +274,9 @@ body {
     border-radius: 3px;
 }
 
-.swatch.pair-dog1 { background: #f59e0b; }
-.swatch.pair-dog2 { background: #3b82f6; }
-.swatch.pair-dog3 { background: #ec4899; }
+.swatch.pair-dog1 { background: #d98218; }
+.swatch.pair-dog2 { background: #2f6fb0; }
+.swatch.pair-dog3 { background: #c2467e; }
 
 .user.success-state {
     justify-content: center;
@@ -289,20 +294,17 @@ body {
     .game-layout {
         padding: 12px;
     }
+}
+
+/* only go side by side once 400 + 600 + gap actually fits */
+@media (min-width: 1060px) {
+    .game-layout {
+        flex-direction: row;
+        align-items: flex-start;
+    }
 
     .controls-panel {
-        max-width: 100%;
-    }
-
-    .board-panel {
-        width: 100%;
-        align-items: flex-start;
-        overflow-x: auto;
-    }
-
-    .board-frame,
-    .board {
-        width: 600px;
-        height: 400px;
+        width: 400px;
+        flex-shrink: 0;
     }
 }

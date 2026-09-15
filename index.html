@@ -32,7 +32,7 @@
                         <option value="column">column</option>
                         <option value="column-reverse">column-reverse</option>
                     </select>
-                    <p class="property-hint">Sets the direction items are placed (row or column).</p>
+                    <p class="property-hint">row = the dogs stand side by side, column = one under the other.</p>
                 </div>
 
                 <div class="property-group">
@@ -46,7 +46,7 @@
                         <option value="space-around">space-around</option>
                         <option value="space-evenly">space-evenly</option>
                     </select>
-                    <p class="property-hint">Aligns items along the main axis.</p>
+                    <p class="property-hint">Moves them along the line you picked above, or spreads out the gaps.</p>
                 </div>
 
                 <div class="property-group">
@@ -59,7 +59,7 @@
                         <option value="stretch">stretch</option>
                         <option value="baseline">baseline</option>
                     </select>
-                    <p class="property-hint">Aligns items along the cross axis.</p>
+                    <p class="property-hint">Moves them the other way: up and down in a row, left and right in a column.</p>
                 </div>
 
                 <div class="property-group">
@@ -70,27 +70,30 @@
                         <option value="wrap">wrap</option>
                         <option value="wrap-reverse">wrap-reverse</option>
                     </select>
-                    <p class="property-hint">Allows items to move to a new line when needed.</p>
+                    <p class="property-hint">When there is no room left, the extra dogs drop to a new line.</p>
                 </div>
             </div>
 
             <div class="action-row">
-                <button type="button" id="btn-check" class="action-btn primary-btn">Validate Rescue</button>
-                <button type="button" id="btn-reset" class="action-btn secondary-btn">Reset Level</button>
+                <button type="button" id="btn-check" class="action-btn primary-btn">Check</button>
+                <button type="button" id="btn-reset" class="action-btn secondary-btn">Reset level</button>
             </div>
 
             <p id="message" class="message hidden"></p>
             <p class="stats-footer">Attempts: <strong id="attempts">0</strong></p>
+            <p class="stats-footer">Next unlocks once you solve this level.</p>
         </section>
 
         <section class="panel board-panel">
-            <div class="board-frame">
-                <div id="board" class="board">
-                    <div id="target-board" class="layer target"></div>
-                    <div id="user-board" class="layer user"></div>
+            <div class="board-scroll">
+                <div class="board-frame">
+                    <div id="board" class="board">
+                        <div id="target-board" class="layer target"></div>
+                        <div id="user-board" class="layer user"></div>
+                    </div>
                 </div>
             </div>
-            <p class="hint">The faded owners show where each dog should go. Match the colored borders, then click Validate.</p>
+            <p class="hint">The faded owners are where the dogs need to end up. Match the border colours, then hit Check.</p>
             <ul class="legend">
                 <li><span class="swatch pair-dog1"></span> Orange = Golden dog</li>
                 <li><span class="swatch pair-dog2"></span> Blue = Corgi</li>

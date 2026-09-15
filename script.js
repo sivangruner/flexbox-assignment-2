@@ -1,6 +1,6 @@
 var levels = [
     {
-        text: "Two owners are waiting on the left side of the park. Guide both dogs to them.",
+        text: "Two owners are waiting at the left edge of the park. Keep the dogs in a row and send them to the start of the line.",
         dogs: ["dog1.png", "dog2.png"],
         start: { "justify-content": "flex-end", "align-items": "flex-start" },
         target: { "justify-content": "flex-start" }
@@ -18,19 +18,19 @@ var levels = [
         target: { "justify-content": "flex-end", "align-items": "flex-end" }
     },
     {
-        text: "Three owners are lined up down the left side. Match each dog to its owner color.",
+        text: "Three owners are lined up down the left side of the park, starting from the top. Match each dog to its owner color.",
         dogs: ["dog1.png", "dog2.png", "dog3.png"],
         start: { "justify-content": "flex-end", "align-items": "flex-start" },
         target: { "flex-direction": "column", "justify-content": "flex-start", "align-items": "flex-start" }
     },
     {
-        text: "Three owners stand in a centered column, bottom to top: pink, blue, then orange.",
+        text: "The three owners wait in a column in the middle of the park, but the order is flipped: pink on top, then blue, then orange at the bottom.",
         dogs: ["dog1.png", "dog2.png", "dog3.png"],
         start: { "justify-content": "flex-end", "align-items": "flex-start" },
         target: { "flex-direction": "column-reverse", "justify-content": "center", "align-items": "center" }
     },
     {
-        text: "Twelve dogs fill the park crate and will not fit in one row",
+        text: "Twelve dogs will not fit in one row. Let them wrap onto new rows and spread each row out with space-around.",
         dogs: [
             "dog1.png", "dog2.png", "dog3.png",
             "dog1.png", "dog2.png", "dog3.png",
@@ -54,6 +54,7 @@ var selects = {
 var currentLevel = 0;
 var attempts = 0;
 var advanceTimer = null;
+var solved = [];
 
 var userBoard = document.getElementById("user-board");
 var targetBoard = document.getElementById("target-board");
@@ -115,9 +116,14 @@ function hideMessage() {
     message.className = "message hidden";
 }
 
+function isSolved(index) {
+    return solved.indexOf(index) !== -1;
+}
+
 function updateNavButtons() {
     document.getElementById("btn-prev").disabled = currentLevel === 0;
-    document.getElementById("btn-next").disabled = currentLevel === levels.length - 1;
+    document.getElementById("btn-next").disabled =
+        currentLevel === levels.length - 1 || !isSolved(currentLevel);
 }
 
 function showSuccessImage() {
@@ -188,8 +194,14 @@ function isMatch(dog, owner) {
 function checkSolution() {
     var dogs = userBoard.querySelectorAll(".token:not(.owner)");
     var owners = targetBoard.querySelectorAll(".token.owner");
+    var checkBtn = document.getElementById("btn-check");
     var i;
 
+    if (checkBtn.disabled) {
+        return;
+    }
+
+    checkBtn.disabled = true;
     attempts++;
     attemptsEl.textContent = attempts;
     updateUserBoard();
@@ -198,12 +210,18 @@ function checkSolution() {
         for (i = 0; i < dogs.length; i++) {
             if (!isMatch(dogs[i], owners[i])) {
                 showMessage("Not quite right. Keep trying!", "error");
+                checkBtn.disabled = false;
                 return;
             }
         }
 
-        document.getElementById("btn-check").disabled = true;
+        if (!isSolved(currentLevel)) {
+            solved.push(currentLevel);
+        }
+
         showSuccessImage();
+        updateNavButtons();
+        clearTimeout(advanceTimer);
         showMessage("Success! The dogs found their owners!", "success");
 
         if (currentLevel < levels.length - 1) {
@@ -234,7 +252,7 @@ document.getElementById("btn-prev").addEventListener("click", function () {
 });
 
 document.getElementById("btn-next").addEventListener("click", function () {
-    if (currentLevel < levels.length - 1) {
+    if (currentLevel < levels.length - 1 && isSolved(currentLevel)) {
         currentLevel++;
         loadLevel();
     }
